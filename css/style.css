@@ -28,6 +28,7 @@
     --color-orange-800: oklch(47% 0.157 37.304);
     --color-orange-900: oklch(40.8% 0.123 38.172);
     --color-amber-50: oklch(98.7% 0.022 95.277);
+    --color-amber-300: oklch(87.9% 0.169 91.605);
     --color-yellow-50: oklch(98.7% 0.026 102.212);
     --color-yellow-100: oklch(97.3% 0.071 103.193);
     --color-yellow-200: oklch(94.5% 0.129 101.54);
@@ -185,6 +186,7 @@
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
+    --radius-4xl: 2rem;
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -451,14 +453,14 @@
   .mt-2\.5 {
     margin-top: calc(var(--spacing) * 2.5);
   }
+  .mt-5 {
+    margin-top: calc(var(--spacing) * 5);
+  }
   .mb-1 {
     margin-bottom: calc(var(--spacing) * 1);
   }
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
-  }
-  .mb-2\.5 {
-    margin-bottom: calc(var(--spacing) * 2.5);
   }
   .block {
     display: block;
@@ -662,6 +664,9 @@
   .rounded-2xl {
     border-radius: var(--radius-2xl);
   }
+  .rounded-4xl {
+    border-radius: var(--radius-4xl);
+  }
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
@@ -696,12 +701,19 @@
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
   }
+  .border-b-2 {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 2px;
+  }
   .border-l-0 {
     border-left-style: var(--tw-border-style);
     border-left-width: 0px;
   }
   .border-\[\#EBEBD3\] {
     border-color: #EBEBD3;
+  }
+  .border-\[\#F95738\] {
+    border-color: #F95738;
   }
   .border-blue-600 {
     border-color: var(--color-blue-600);
@@ -717,9 +729,6 @@
   }
   .border-gray-300 {
     border-color: var(--color-gray-300);
-  }
-  .bg-\[\#083D77\] {
-    background-color: #083D77;
   }
   .bg-\[\#263d3d\] {
     background-color: #263d3d;
@@ -763,6 +772,9 @@
   .object-cover {
     object-fit: cover;
   }
+  .object-center {
+    object-position: center;
+  }
   .p-1 {
     padding: calc(var(--spacing) * 1);
   }
@@ -777,6 +789,9 @@
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
+  }
+  .p-5 {
+    padding: calc(var(--spacing) * 5);
   }
   .px-1 {
     padding-inline: calc(var(--spacing) * 1);
@@ -876,6 +891,9 @@
   .text-amber-50 {
     color: var(--color-amber-50);
   }
+  .text-amber-300 {
+    color: var(--color-amber-300);
+  }
   .text-blue-600 {
     color: var(--color-blue-600);
   }
@@ -896,6 +914,9 @@
   }
   .text-white {
     color: var(--color-white);
+  }
+  .line-through {
+    text-decoration-line: line-through;
   }
   .underline {
     text-decoration-line: underline;
@@ -1073,9 +1094,19 @@
       display: flex;
     }
   }
+  .max-\[860px\]\:grid-cols-2 {
+    @media (width < 860px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
   .max-\[845px\]\:flex-col-reverse {
     @media (width < 845px) {
       flex-direction: column-reverse;
+    }
+  }
+  .max-\[500px\]\:grid-cols-1 {
+    @media (width < 500px) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
     }
   }
   .min-\[1100px\]\:flex {
@@ -1111,6 +1142,11 @@
   .md\:hidden {
     @media (width >= 48rem) {
       display: none;
+    }
+  }
+  .md\:grid-cols-4 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
   .rtl\:rotate-180 {
@@ -1150,11 +1186,6 @@
       background-color: var(--color-blue-600);
     }
   }
-  .dark\:bg-blue-900 {
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--color-blue-900);
-    }
-  }
   .dark\:bg-gray-600 {
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-gray-600);
@@ -1184,11 +1215,6 @@
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in oklab, var(--color-gray-900) 80%, transparent);
       }
-    }
-  }
-  .dark\:text-blue-300 {
-    @media (prefers-color-scheme: dark) {
-      color: var(--color-blue-300);
     }
   }
   .dark\:text-blue-500 {
@@ -1225,15 +1251,6 @@
       &:hover {
         @media (hover: hover) {
           background-color: var(--color-gray-600);
-        }
-      }
-    }
-  }
-  .dark\:hover\:bg-gray-700 {
-    @media (prefers-color-scheme: dark) {
-      &:hover {
-        @media (hover: hover) {
-          background-color: var(--color-gray-700);
         }
       }
     }
@@ -1286,7 +1303,7 @@ body {
 }
 .swiper {
   width: 100%;
-  min-height: 570px;
+  height: 660px;
 }
 .swiper-button-prev, .swiper-button-next, .swiper-pagination {
   transition: all;
